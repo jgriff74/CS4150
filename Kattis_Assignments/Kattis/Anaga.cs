@@ -34,7 +34,7 @@ namespace Kattis
                     solution.Remove(sorted_word);
                     rejected.Add(sorted_word);
                 }
-                else
+                else if(!rejected.Contains(sorted_word))
                 {
                     solution.Add(sorted_word);
                 }
@@ -43,7 +43,6 @@ namespace Kattis
             if(solution.Count > number_tracker)
             {
                 Console.WriteLine(solution.Count);
-                Console.WriteLine(number_tracker);
                 Console.Read();
             }
             else
