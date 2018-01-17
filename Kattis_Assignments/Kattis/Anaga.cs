@@ -17,14 +17,14 @@ namespace Kattis
             int number_of_words = Convert.ToInt32(number_of_words_letters[0]);
             int number_of_letters = Convert.ToInt32(number_of_words_letters[1]);
 
-            //if ((number_of_words < 1 || number_of_words > 10000) && (number_of_letters < 1 || number_of_letters > 1000))
-            //{
-            //    throw new System.IO.IOException();
-            //}
+            if ((number_of_words < 1 || number_of_words > 10000) && (number_of_letters < 1 || number_of_letters > 1000))
+            {
+                throw new System.IO.IOException();
+            }
 
             List<string> solution = new List<string>();
             List<string> rejected = new List<string>();
-
+            int number_tracker = number_of_words;
             while(--number_of_words >= 0)
             {
                 string sorted_word = String.Concat(Console.ReadLine().OrderBy(c => c));   //order the word
@@ -40,8 +40,17 @@ namespace Kattis
                 }
             }
 
-            Console.WriteLine(solution.Count);
-            Console.Read();
+            if(solution.Count > number_tracker)
+            {
+                Console.WriteLine(solution.Count);
+                Console.WriteLine(number_tracker);
+                Console.Read();
+            }
+            else
+            {
+                Console.WriteLine(solution.Count);
+                Console.Read();
+            }
 
         }
     }
