@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace Kattis
     {
         static void Main(string[] args)
         {
+            Stopwatch s = new Stopwatch();
+
             string[] number_of_words_letters = Console.ReadLine().Split(' ');
 
             //get the n (number of words) and k (number of letters) out of the file
@@ -25,6 +28,8 @@ namespace Kattis
             List<string> solution = new List<string>();
             List<string> rejected = new List<string>();
             int number_tracker = number_of_words;
+
+            s.Start();
             while(--number_of_words >= 0)
             {
                 string sorted_word = String.Concat(Console.ReadLine().OrderBy(c => c));   //order the word
@@ -39,18 +44,36 @@ namespace Kattis
                     solution.Add(sorted_word);
                 }
             }
+            s.Stop();
+            double regular_time = msecs(s);
 
-            if(solution.Count > number_tracker)
+            s = new Stopwatch();
+            s.Start();
+            while (--number_tracker >= 0)
+            {
+                // minus the overhead
+            }
+            s.Stop();
+            double overhead = msecs(s);
+            if (solution.Count > number_tracker)
             {
                 Console.WriteLine(solution.Count);
+                Console.WriteLine(regular_time - overhead);
                 Console.Read();
             }
             else
             {
                 Console.WriteLine(solution.Count);
+                Console.WriteLine(regular_time - overhead);
                 Console.Read();
             }
+            
 
+        }
+
+        public static double msecs(Stopwatch sw)
+        {
+            return (((double)sw.ElapsedTicks) / Stopwatch.Frequency) * 1000;
         }
     }
 }
