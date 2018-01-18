@@ -12,7 +12,7 @@ namespace Kattis
     {
         static void Main(string[] args)
         {
-            Stopwatch s = new Stopwatch();
+            Stopwatch s = new Stopwatch();      //****** remove
 
             string[] number_of_words_letters = Console.ReadLine().Split(' ');
 
@@ -29,8 +29,8 @@ namespace Kattis
             List<string> rejected = new List<string>();
             int number_tracker = number_of_words;
 
-            s.Start();
-            while(--number_of_words >= 0)
+            s.Start();     //****** remove
+            while (--number_of_words >= 0)
             {
                 string sorted_word = String.Concat(Console.ReadLine().OrderBy(c => c));   //order the word
 
@@ -44,34 +44,34 @@ namespace Kattis
                     solution.Add(sorted_word);
                 }
             }
-            s.Stop();
-            double regular_time = msecs(s);
+            s.Stop();  //****** remove
+            double regular_time = msecs(s);      //****** remove
 
-            s = new Stopwatch();
-            s.Start();
-            while (--number_tracker >= 0)
+            s = new Stopwatch();    //****** remove
+            s.Start();         //****** remove
+            while (--number_tracker >= 0)   //****** remove
             {
-                // minus the overhead
+                // minus the overhead    //****** remove
             }
-            s.Stop();
-            double overhead = msecs(s);
+            s.Stop();  //****
+            double overhead = msecs(s);  //****** remove
             if (solution.Count > number_tracker)
             {
                 Console.WriteLine(solution.Count);
-                Console.WriteLine(regular_time - overhead);
+                Console.WriteLine(regular_time - overhead);  //****** remove
                 Console.Read();
             }
             else
             {
                 Console.WriteLine(solution.Count);
-                Console.WriteLine(regular_time - overhead);
+                Console.WriteLine(regular_time - overhead);   //****** remove
                 Console.Read();
             }
             
 
         }
 
-        public static double msecs(Stopwatch sw)
+        public static double msecs(Stopwatch sw)   //****** remove
         {
             return (((double)sw.ElapsedTicks) / Stopwatch.Frequency) * 1000;
         }
